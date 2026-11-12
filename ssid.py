@@ -16,12 +16,26 @@ def type():
 
 
 def key_size_in_bits(key: str):
+  """
+  Validate the key size in processing mode. Using encode method to read string
+  and multiply it with * 8. Because a single character = 1 byte.
+  1 byte = 8 bits.
+  Multiply 1 btye into 8 making 8 bits.
+  For example:
+    A key is 13 characters long e.g. "this_is_the_key", it's 13 bytes longer multiplying
+    it into 8 giving the actual size of string in bits.
+
+  Because encoding method could prefer the actual characters sizes, not everytime a single character could be = 1 byte,
+  they could be 2 characters = 1 byte.
+  """
   return len(key.encode('utf-8')) * 8
 
 
 def random_letter(include_symbols: bool = True, include_integers: bool = True, include_characters: bool = True):
   global _integers, _characters, _symbols
-  
+  """
+  Getting random letter to help in loop for making a long string of key.
+  """
   _type = str(type())
   if "characters" in _type.lower() and include_characters:
     _selected = random.choices(_characters)
@@ -43,6 +57,14 @@ include_integers: bool = True,
 include_characters: bool = True,
 bits: int = _default_bits
 ):
+  """
+  Generating a key using while loop with special parameter features.
+  include_symbols=True, means to include symbols in key;
+  include_integers=True, means to include integers in key;
+  include_characters=True, means to include characters in key;
+
+  Making false them all, will not generate a key.
+  """
   if not include_symbols and not include_integers and not include_characters:
     return f"Make True/Available at least one of them!"
   
@@ -64,6 +86,7 @@ bits: int = _default_bits
   return _key
 
 
+# Testing Version
 import time
 
 start_time = time.perf_counter()
