@@ -1,8 +1,18 @@
 import socket
-from logging import log
+from logging import log, current_time_code
+
 
 HOST = "0.0.0.0"
 PORT = 1101
+
+def write_request(message):
+  current_time = current_time_code()
+  filename = "request_" + str(current_time) + ".txt"
+  with open(filename, "w", encoding="utf-8") as file:
+    file.write(message)
+
+  return filename
+  
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -25,10 +35,17 @@ while True:
           break
           
         log(f"Message: {data.decode()}")
+        file = write_request(data.decode())
+        log(f"Request Saved with file named {file}")
         log(f"Sender Address: {client_sock.getpeername()}")
         log(f"Is blocking: {client_sock.getblocking()}")
 
-        client_sock.sendall(b"Message recieved successfully!")
+        # client_sock.sendall(b"Message recieved successfully!")
+        response = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nServer: OpenSource Web Server\r\n\r\nHello from Tailscale Edge Server!"
+        client_sock.sendall(response.encode())
+        log(f"Response Successfully Send to the {client_address}")
+
+        break
 
       except Exception as e:
         print(f"Communication Error: {e}")  
