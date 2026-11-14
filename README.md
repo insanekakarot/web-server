@@ -1,6 +1,6 @@
 # Web Server
   
-  An OpenSource Web Server by `[@insanekakarot](https://github.com/insanekakarot)` & `[@syedovaisuallah](https://github.com/SYEDOVAISULLAH)`
+  An OpenSource Web Server by [@insanekakarot](https://github.com/insanekakarot) & [@syedovaisuallah](https://github.com/SYEDOVAISULLAH)
 
   Install TailScale using command in linux;
   ``` bash
