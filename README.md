@@ -4,16 +4,16 @@
 
   Install TailScale using command in linux;
   ``` bash
-    `sudo apt update`
-    `curl -fsSL https://tailscale.com/install.sh | sh`
+  sudo apt update
+  curl -fsSL https://tailscale.com/install.sh | sh
   ```
   or Visit [TailScale](https://tailscale.com/docs/install/linux) for complete installation guide.
 
   After installing check TailScale Downloaded using version verification;
     
-    ``` bash
-    `tailscale --version`
-    ```
+  ``` bash
+    tailscale --version
+  ```
 
 ## Running Server
   Run `server.py` & tailscale funnel using `sudo tailscale funnel --tls-terminated-tcp=10000 tcp://127.0.0.1:1101`
